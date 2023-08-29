@@ -5,7 +5,7 @@ import 'package:weather_by_gps_test/core/error/exception.dart';
 import 'package:weather_by_gps_test/features/weather/data/models/current_temp_model.dart';
 import 'package:weather_by_gps_test/features/weather/data/models/future_temp_model.dart';
 
-abstract class WeatherRemoteLocalDataSource {
+abstract class WeatherLocalDataSource {
   Future<void> saveCurrentTempToCache(CurrentTempModel currentTempModel);
 
   Future<void> saveFutureTempToCache(List<FutureTempModel> futureTempModelList);
@@ -18,10 +18,10 @@ abstract class WeatherRemoteLocalDataSource {
 const CACHED_FUTURE_TEMP_MODEL_LIST = 'CACHED_FUTURE_TEMP_MODEL_LIST';
 const CACHED_CURRENT_TEMP_MODEL = 'CACHED_CURRENT_TEMP_MODEL';
 
-class WeatherRemoteLocalDataSourceImpl extends WeatherRemoteLocalDataSource {
+class WeatherLocalDataSourceImpl extends WeatherLocalDataSource {
   final SharedPreferences sharedPreferences;
 
-  WeatherRemoteLocalDataSourceImpl({required this.sharedPreferences});
+  WeatherLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
   Future<CurrentTempModel> getCurrentTempFromCache() {

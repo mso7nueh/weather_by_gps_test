@@ -9,6 +9,12 @@ import 'package:weather_by_gps_test/features/login/data/repositories/login_repos
 import 'package:weather_by_gps_test/features/login/domain/repositories/login_repository.dart';
 import 'package:weather_by_gps_test/features/login/domain/usecases/login.dart';
 import 'package:weather_by_gps_test/features/login/presentation/bloc/login_cubit/login_cuibt.dart';
+import 'package:weather_by_gps_test/features/weather/data/datasources/weather_local_data_source.dart';
+import 'package:weather_by_gps_test/features/weather/data/datasources/weather_remote_data_soruce.dart';
+import 'package:weather_by_gps_test/features/weather/data/repositories/weather_repository_impl.dart';
+import 'package:weather_by_gps_test/features/weather/domain/repositories/weather_repository.dart';
+import 'package:weather_by_gps_test/features/weather/domain/usecases/get_current_temp.dart';
+import 'package:weather_by_gps_test/features/weather/domain/usecases/get_future_temp.dart';
 
 final sl = GetIt.instance;
 
@@ -19,9 +25,16 @@ Future<void> init() async {
   // UseCases
   sl.registerLazySingleton<Login>(() => Login(loginRepository: sl()));
 
+  sl.registerLazySingleton<GetCurrentTemp>(() => GetCurrentTemp(weatherRepository: sl()));
+  sl.registerLazySingleton<GetFutureTemp>(() => GetFutureTemp(weatherRepository: sl()));
+
   // Repository
   sl.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()));
   sl.registerLazySingleton<LoginRemoteDataSource>(() => LoginRemoteDataSourceImpl(client: sl()));
+
+  sl.registerLazySingleton<WeatherRepository>(() => WeatherRepositoryImpl(remoteDataSource: sl(), localDataSource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<WeatherRemoteDataSource>(() => WeatherRemoteDataSourceImpl(client: sl()));
+  sl.registerLazySingleton<WeatherLocalDataSource>(() => WeatherLocalDataSourceImpl(sharedPreferences: sl()));
 
   // Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
