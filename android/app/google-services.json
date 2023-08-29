@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "36418845354",
+    "project_id": "weather-by-gps-test-63b29",
+    "storage_bucket": "weather-by-gps-test-63b29.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36418845354:android:e6ae3d12a355cc95062ed3",
+        "android_client_info": {
+          "package_name": "ru.mso7nueh.weather_by_gps_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36418845354-9jo6vrrp30uajlqk9tjj80kaijeqg6kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRsA4Y0UZsSshmtxJdyuOJqkiVhf2nzlA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36418845354-9jo6vrrp30uajlqk9tjj80kaijeqg6kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
