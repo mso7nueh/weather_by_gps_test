@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_by_gps_test/app_router.dart';
 import 'package:weather_by_gps_test/features/login/presentation/bloc/login_cubit/login_cuibt.dart';
+import 'package:weather_by_gps_test/features/weather/presentation/bloc/weather_cubit.dart';
 import 'package:weather_by_gps_test/generated/l10n.dart';
 import 'package:weather_by_gps_test/locator_service.dart' as di;
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginCubit>(create: (context) => sl<LoginCubit>()),
+        BlocProvider<WeatherCubit>(create: (context) => sl<WeatherCubit>()..getWeather()),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter().router,

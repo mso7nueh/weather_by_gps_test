@@ -14,7 +14,7 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSource {
   final apiKey = 'abf27e7753f01b857aeeffdbbfaa9fd5';
 
   final latitude = '55.7522';
-  final longitude = '37.6156';
+  final longitude = '37.6156'; // todo get it from gps
 
   final http.Client client;
 

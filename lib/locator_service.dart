@@ -15,12 +15,14 @@ import 'package:weather_by_gps_test/features/weather/data/repositories/weather_r
 import 'package:weather_by_gps_test/features/weather/domain/repositories/weather_repository.dart';
 import 'package:weather_by_gps_test/features/weather/domain/usecases/get_current_temp.dart';
 import 'package:weather_by_gps_test/features/weather/domain/usecases/get_future_temp.dart';
+import 'package:weather_by_gps_test/features/weather/presentation/bloc/weather_cubit.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
   // BLoC / Cubit
   sl.registerFactory(() => LoginCubit(login: sl()));
+  sl.registerFactory(() => WeatherCubit(getCurrentTemp: sl(), getFutureTemp: sl(), gps: sl()));
 
   // UseCases
   sl.registerLazySingleton<Login>(() => Login(loginRepository: sl()));
