@@ -6,16 +6,22 @@ class FutureTempModel extends FutureTempEntity {
   factory FutureTempModel.fromJson(Map<String, dynamic> json) {
     return FutureTempModel(
       date: json['dt_txt'].toString(),
-      temp: json['main']['temp'].toStringAsFixed(0),
+      temp: json['main']['temp'].toString(),
       mode: json['weather'][0]['main'].toString(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'date': date,
-      'temp': temp,
-      'mode': mode,
+      'dt_txt': date,
+      'main': {
+        'temp': temp,
+      },
+      'weather': [
+        {
+          'main': mode,
+        },
+      ],
     };
   }
 }

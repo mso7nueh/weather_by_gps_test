@@ -12,7 +12,7 @@ class GetFutureTemp extends UseCase<List<FutureTempEntity>, GetFutureTempParams>
 
   @override
   Future<Either<Failure, List<FutureTempEntity>>> call(GetFutureTempParams params) async {
-    return await weatherRepository.getFutureTemp();
+    return await weatherRepository.getFutureTemp(params.latitude, params.longitude);
   }
 }
 

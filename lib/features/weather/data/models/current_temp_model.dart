@@ -14,24 +14,30 @@ class CurrentTempModel extends CurrentTempEntity {
   factory CurrentTempModel.fromJson(Map<String, dynamic> json) {
     return CurrentTempModel(
       cityName: json['name'].toString(),
-      temp: json['main']['temp'].toStringAsFixed(0),
+      temp: json['main']['temp'].toString(),
       mode: json['weather'][0]['main'].toString(),
-      max: json['main']['temp_max'].toStringAsFixed(0),
-      min: json['main']['temp_min'].toStringAsFixed(0),
-      windSpeed: json['wind']['speed'].toStringAsFixed(0),
+      max: json['main']['temp_max'].toString(),
+      min: json['main']['temp_min'].toString(),
+      windSpeed: json['wind']['speed'].toString(),
       humidity: json['main']['humidity'].toString(),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'cityName': cityName,
-      'temp': temp,
-      'mode': mode,
-      'max': max,
-      'min': min,
-      'windSpeed': windSpeed,
-      'humidity': humidity,
+      'name': cityName,
+      'weather': [
+        {
+          'main': mode,
+        }
+      ],
+      'wind': {'speed': windSpeed},
+      'main': {
+        'temp_min': min,
+        'temp_max': max,
+        'temp': temp,
+        'humidity': humidity,
+      },
     };
   }
 }

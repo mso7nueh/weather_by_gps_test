@@ -16,10 +16,10 @@ class WeatherRepositoryImpl extends WeatherRepository {
   WeatherRepositoryImpl({required this.remoteDataSource, required this.localDataSource, required this.networkInfo});
 
   @override
-  Future<Either<Failure, CurrentTempEntity>> getCurrentTemp() async {
+  Future<Either<Failure, CurrentTempEntity>> getCurrentTemp(String latitude, String longitude) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteCurrentTemp = await remoteDataSource.getCurrentTemp();
+        final remoteCurrentTemp = await remoteDataSource.getCurrentTemp(latitude, longitude);
         await localDataSource.saveCurrentTempToCache(remoteCurrentTemp);
         return Right(remoteCurrentTemp);
       } on ServerException {
@@ -36,10 +36,10 @@ class WeatherRepositoryImpl extends WeatherRepository {
   }
 
   @override
-  Future<Either<Failure, List<FutureTempEntity>>> getFutureTemp() async {
+  Future<Either<Failure, List<FutureTempEntity>>> getFutureTemp(String latitude, String longitude) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteFutureTemp = await remoteDataSource.getFutureTemp();
+        final remoteFutureTemp = await remoteDataSource.getFutureTemp(latitude, longitude);
         await localDataSource.saveFutureTempToCache(remoteFutureTemp);
         return Right(remoteFutureTemp);
       } on ServerException {

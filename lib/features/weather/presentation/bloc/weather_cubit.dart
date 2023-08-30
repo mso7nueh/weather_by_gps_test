@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weather_by_gps_test/core/platform/gps.dart';
 import 'package:weather_by_gps_test/features/weather/domain/usecases/get_current_temp.dart';
 import 'package:weather_by_gps_test/features/weather/domain/usecases/get_future_temp.dart';
@@ -14,11 +15,13 @@ class WeatherCubit extends Cubit<WeatherState> {
   Future<void> getWeather() async {
     emit(const WeatherLoading());
 
-    final getCurrentTempOrFailure = await getCurrentTemp.call(const GetCurrentTempParams(latitude: '', longitude: ''));
-    final getFutureTempOrFailure = await getFutureTemp.call(const GetFutureTempParams(latitude: '', longitude: ''));
+    final currentPosition = await gps.getCurrentPosition();
 
-    getCurrentTempOrFailure.fold((error) => emit(const WeatherError()), (currentTemp) {
-      getFutureTempOrFailure.fold(
+    final currentTempOrFailure = await getCurrentTemp.call(GetCurrentTempParams(latitude: currentPosition.latitude.toString(), longitude: currentPosition.longitude.toString()));
+    final futureTempOrFailure = await getFutureTemp.call(GetFutureTempParams(latitude: currentPosition.latitude.toString(), longitude: currentPosition.longitude.toString()));
+
+    currentTempOrFailure.fold((error) => emit(const WeatherError()), (currentTemp) {
+      futureTempOrFailure.fold(
         (error) => emit(const WeatherError()),
         (futureTempList) => (emit(WeatherLoaded(currentTempEntity: currentTemp, futureTempEntityList: futureTempList))),
       );

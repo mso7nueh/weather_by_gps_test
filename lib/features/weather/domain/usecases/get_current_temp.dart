@@ -12,7 +12,7 @@ class GetCurrentTemp extends UseCase<CurrentTempEntity, GetCurrentTempParams> {
 
   @override
   Future<Either<Failure, CurrentTempEntity>> call(GetCurrentTempParams params) async {
-    return await weatherRepository.getCurrentTemp();
+    return await weatherRepository.getCurrentTemp(params.latitude, params.longitude);
   }
 }
 

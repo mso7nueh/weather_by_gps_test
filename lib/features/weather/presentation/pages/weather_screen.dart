@@ -12,6 +12,10 @@ class WeatherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherCubit, WeatherState>(
       builder: (context, state) {
+        if (state is WeatherLoaded) {
+          print(state.futureTempEntityList);
+          print(state.currentTempEntity);
+        }
         return Scaffold(
           body: RefreshIndicator(
             onRefresh: () async {
