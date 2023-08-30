@@ -4,8 +4,7 @@ import 'package:weather_by_gps_test/features/weather/presentation/pages/weather_
 
 class AppRouter {
   final GoRouter router = GoRouter(
-    // initialLocation: '/login-screen',
-    initialLocation: '/weather-screen',
+    initialLocation: '/login-screen',
     routes: [
       GoRoute(
         name: 'loginScreen',
@@ -15,7 +14,7 @@ class AppRouter {
       GoRoute(
         name: 'weatherScreen',
         path: '/weather-screen',
-        builder: (context, state) => WeatherScreen(),
+        builder: (context, state) => const WeatherScreen(),
       ),
     ],
   );

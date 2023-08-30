@@ -1,3 +1,7 @@
 {
-  "enter" : "Войти"
+  "enter" : "Войти",
+  "entrance": "Вход",
+  "inputDataForLogin": "Введите данные для входа",
+  "email": "Email",
+  "password": "Пароль"
 }

@@ -59,6 +59,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Вход`
+  String get entrance {
+    return Intl.message(
+      'Вход',
+      name: 'entrance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Введите данные для входа`
+  String get inputDataForLogin {
+    return Intl.message(
+      'Введите данные для входа',
+      name: 'inputDataForLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Пароль`
+  String get password {
+    return Intl.message(
+      'Пароль',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
