@@ -9,6 +9,8 @@ class CurrentTempModel extends CurrentTempEntity {
     required super.min,
     required super.windSpeed,
     required super.humidity,
+    required super.description,
+    required super.deg,
   });
 
   factory CurrentTempModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,8 @@ class CurrentTempModel extends CurrentTempEntity {
       min: json['main']['temp_min'].toString(),
       windSpeed: json['wind']['speed'].toString(),
       humidity: json['main']['humidity'].toString(),
+      description: json['weather'][0]['description'].toString(),
+      deg: json['wind']['deg'].toString(),
     );
   }
 
@@ -29,9 +33,13 @@ class CurrentTempModel extends CurrentTempEntity {
       'weather': [
         {
           'main': mode,
+          'description': description,
         }
       ],
-      'wind': {'speed': windSpeed},
+      'wind': {
+        'speed': windSpeed,
+        'deg': deg,
+      },
       'main': {
         'temp_min': min,
         'temp_max': max,

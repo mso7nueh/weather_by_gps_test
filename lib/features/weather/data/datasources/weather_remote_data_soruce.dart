@@ -21,6 +21,7 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSource {
   Future<CurrentTempModel> getCurrentTemp(String latitude, String longitude) async {
     final apiUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric&lang=ru';
     final response = await client.get(Uri.parse(apiUrl));
+    print(response.body);
     if (response.statusCode == 200) {
       return CurrentTempModel.fromJson(jsonDecode(response.body));
     } else {

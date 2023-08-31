@@ -40,6 +40,7 @@ class _FutureTempWidgetState extends State<FutureTempWidget> {
         iconAsset = 'assets/icons/cloudLightning.svg';
         break;
       default:
+        iconAsset = 'assets/icons/sun.svg';
         break;
     }
   }

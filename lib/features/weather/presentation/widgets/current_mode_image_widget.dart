@@ -38,6 +38,7 @@ class _CurrentModeImageWidgetState extends State<CurrentModeImageWidget> {
         imageAsset = 'assets/images/lightning.png';
         break;
       default:
+        imageAsset = 'assets/images/sun.png';
         break;
     }
   }

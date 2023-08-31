@@ -8,6 +8,7 @@ import 'package:weather_by_gps_test/features/weather/presentation/bloc/weather_c
 import 'package:weather_by_gps_test/features/weather/presentation/bloc/weather_state.dart';
 import 'package:weather_by_gps_test/features/weather/presentation/widgets/current_mode_image_widget.dart';
 import 'package:weather_by_gps_test/features/weather/presentation/widgets/future_temp_widget.dart';
+import 'package:weather_by_gps_test/features/weather/presentation/widgets/humidity_level_widget.dart';
 
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
@@ -17,21 +18,22 @@ class WeatherScreen extends StatelessWidget {
     return BlocBuilder<WeatherCubit, WeatherState>(
       builder: (context, state) {
         if (state is WeatherLoaded) {
-          return Scaffold(
-            body: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    AppColors.gradientStart,
-                    AppColors.gradientEnd,
-                  ],
-                ),
+          return Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  AppColors.gradientStart,
+                  AppColors.gradientEnd,
+                ],
               ),
-              child: SafeArea(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24.0),
+            ),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.all(24.0),
+                child: SafeArea(
                   child: Column(
                     children: [
                       Row(
@@ -74,6 +76,14 @@ class WeatherScreen extends StatelessWidget {
                           color: Colors.white,
                         ),
                       ),
+                      Text(
+                        state.currentTempEntity.description[0].toUpperCase() +
+                            state.currentTempEntity.description.substring(1, state.currentTempEntity.description.length),
+                        style: AppTextStyles.b1(
+                          Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 8.0),
                       Text(
                         'Макс: ${double.parse(state.currentTempEntity.max).toStringAsFixed(0)}º Мин: ${double.parse(state.currentTempEntity.min).toStringAsFixed(0)}º',
                         style: AppTextStyles.b1(
@@ -143,7 +153,7 @@ class WeatherScreen extends StatelessWidget {
                                     SvgPicture.asset('assets/icons/wind.svg'),
                                     const SizedBox(width: 8.0),
                                     Text(
-                                      '${double.parse(state.currentTempEntity.windSpeed).toStringAsFixed(1)} м/c',
+                                      '${double.parse(state.currentTempEntity.windSpeed).toStringAsFixed(0)} м/c',
                                       style: AppTextStyles.b2Medium(Colors.white24),
                                     ),
                                   ],
@@ -153,16 +163,14 @@ class WeatherScreen extends StatelessWidget {
                             const SizedBox(height: 16.0),
                             Row(
                               children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset('assets/icons/drop.svg'),
-                                    const SizedBox(width: 8.0),
-                                    Text(
-                                      '${double.parse(state.currentTempEntity.humidity).toStringAsFixed(0)}%',
-                                      style: AppTextStyles.b2Medium(Colors.white24),
-                                    ),
-                                  ],
+                                SvgPicture.asset('assets/icons/drop.svg'),
+                                const SizedBox(width: 8.0),
+                                Text(
+                                  '${double.parse(state.currentTempEntity.humidity).toStringAsFixed(0)}%',
+                                  style: AppTextStyles.b2Medium(Colors.white24),
                                 ),
+                                const SizedBox(width: 48.0),
+                                HumidityLevelWidget(humidity: state.currentTempEntity.humidity),
                               ],
                             ),
                           ],
