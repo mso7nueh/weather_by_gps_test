@@ -7,4 +7,7 @@ class AppColors {
   static const stroke = Color(0xFFE4E6EC);
   static const red = Color(0xFFFF585D);
   static const redShadow = Color(0x29FF585D);
+  static const gradientStart = Color(0x700700FF);
+  static const gradientEnd = Color(0xFF000000);
+  static const violet = Color(0xFFBD87FF);
 }

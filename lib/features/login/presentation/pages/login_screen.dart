@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weather_by_gps_test/common/app_colors.dart';
-import 'package:weather_by_gps_test/common/text_styles.dart';
+import 'package:weather_by_gps_test/common/app_text_styles.dart';
 import 'package:weather_by_gps_test/features/login/presentation/bloc/login_cubit/login_cuibt.dart';
 import 'package:weather_by_gps_test/features/login/presentation/bloc/login_cubit/login_state.dart';
 import 'package:weather_by_gps_test/generated/l10n.dart';
@@ -40,25 +40,25 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Text(
                   s.entrance,
-                  style: TextStyles.h1(
+                  style: AppTextStyles.h1(
                     AppColors.header,
                   ),
                 ),
                 const SizedBox(height: 12),
                 Text(
                   s.inputDataForLogin,
-                  style: TextStyles.b2(
+                  style: AppTextStyles.b2(
                     AppColors.greyText,
                   ),
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: _emailController,
-                  style: TextStyles.b1(AppColors.header),
+                  style: AppTextStyles.b1(AppColors.header),
                   cursorColor: AppColors.red,
                   decoration: InputDecoration(
                     labelText: s.email,
-                    labelStyle: TextStyles.b1(AppColors.greyText),
+                    labelStyle: AppTextStyles.b1(AppColors.greyText),
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: AppColors.stroke,
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _passwordController,
                   obscureText: isPasswordHide ? true : false,
                   cursorColor: AppColors.red,
-                  style: TextStyles.b1(AppColors.header),
+                  style: AppTextStyles.b1(AppColors.header),
                   decoration: InputDecoration(
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 2.0,
                       ),
                     ),
-                    labelStyle: TextStyles.b1(AppColors.greyText),
+                    labelStyle: AppTextStyles.b1(AppColors.greyText),
                     suffixIcon: IconButton(
                       icon: AnimatedCrossFade(
                         firstChild: SvgPicture.asset('assets/icons/eye.svg'),
@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.center,
                       child: Text(
                         s.enter,
-                        style: TextStyles.b1Medium(Colors.white),
+                        style: AppTextStyles.b1Medium(Colors.white),
                       ),
                     ),
                   ),

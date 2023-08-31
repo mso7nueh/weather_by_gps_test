@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextStyles {
+class AppTextStyles {
   // heading
   static h1(Color color) {
     return TextStyle(
